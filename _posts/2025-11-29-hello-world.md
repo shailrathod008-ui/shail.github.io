@@ -7,7 +7,7 @@ tags: [intro, hello, first-post]
 # layout: post   # optional, defaults already set in _config.yml
 description: "My very first post — powered by Jekyll and Chirpy!"
 image:
-  path: /assets/img/brain-computer-chip.jpg
+  path: /assets/img/hello-world-banner.jpg
   alt: "Hello World banner"
   caption: "Built with ❤️ using Jekyll Chirpy theme"
 ---
@@ -29,5 +29,5 @@ I’ll be posting about:
 - Open-source projects I’m contributing to
 - Notes on AI, logic, and philosophy
 
-More stuff coming soon 😄
+More stuff coming soon 😄 
 
