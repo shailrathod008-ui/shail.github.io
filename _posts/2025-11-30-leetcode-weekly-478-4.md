@@ -51,6 +51,16 @@ to ye tabhi possible hai jab:
 
    **`nums[i] = k * q[i] + rem`**
 
+   Yahan:
+
+    -  nums[i] → original element
+
+    -  k → fixed step size (given)
+
+    - rem → remainder when dividing nums[i] by k
+
+    - q[i] → quotient (integer part) when dividing nums[i] by k
+
 - Operation **`±k → q[i] += 1 ya q[i] -= 1.`**
 
 - To cost = sum of absolute differences from some target `T`:
