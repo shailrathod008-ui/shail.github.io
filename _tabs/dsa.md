@@ -20,5 +20,6 @@ This page tracks my **DSA journey** — mainly:
 You can explore:
 
 - [All LeetCode posts]({{ '/tags/leetcode/' | relative_url }})
+- [LeetCode Problems Index]({{ '/leetcode/' | relative_url }})
 
 _(Links will start working as soon as we add posts 😉)_

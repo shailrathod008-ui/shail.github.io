@@ -54,3 +54,73 @@ li code {
   color: #6e7781;
   font-style: italic;
 }
+
+.leetcode-filters {
+  margin-bottom: 1rem;
+}
+
+.lc-filter-btn {
+  border: 1px solid var(--sidebar-border-color);
+  padding: 0.3rem 0.8rem;
+  margin-right: 0.3rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: transparent;
+}
+
+.lc-filter-btn.active {
+  font-weight: 600;
+  box-shadow: 0 0 0 1px var(--sidebar-border-color);
+}
+
+.leetcode-list .lc-item {
+  margin-bottom: 1rem;
+}
+
+.lc-title {
+  margin-bottom: 0.2rem;
+}
+
+.lc-meta {
+  font-size: 0.85rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.lc-diff-badge {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.lc-diff-easy {
+  background: #22c55e33;
+  color: #22c55e;
+}
+.lc-diff-medium {
+  background: #facc1533;
+  color: #d97706;
+}
+.lc-diff-hard {
+  background: #ef444433;
+  color: #b91c1c;
+}
+.lc-diff-unknown {
+  background: #6b728033;
+  color: #6b7280;
+}
+
+.lc-tags {
+  margin-top: 0.2rem;
+}
+
+.lc-tag {
+  font-size: 0.8rem;
+  margin-right: 0.2rem;
+  color: var(--text-muted-color);
+}
+
