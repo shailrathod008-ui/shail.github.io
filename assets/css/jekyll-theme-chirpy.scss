@@ -18,12 +18,12 @@
 .post-content span,
 .post-content strong,
 .post-content em {
-  color: #ececf1 !important; /* ChatGPT bright text tone */
+  color: #fdfdffff !important; /* ChatGPT bright text tone */
 }
 
 /* Base text for paragraphs, lists, etc. */
 .post-content {
-  color: #ececf1 !important;
+  color: #fdfdffff !important;
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   line-height: 1.7;
   font-size: 1rem;
@@ -36,3 +36,12 @@
   color: #ffffff !important;
   font-weight: 600;
 }
+
+/* === ChatGPT-style fenced code block text === */
+
+div.highlight code {
+  background-color: #000000ff !important; /* GPT dark background */
+}
+
+
+
