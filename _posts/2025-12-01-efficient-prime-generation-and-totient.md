@@ -14,6 +14,82 @@ Chalo step-by-step samajhte hain 👇
 
 ---
 
+## 🔹 Mathematical Proofs (Beginner-friendly, with math)
+
+
+### 1. Why the Sieve of Eratosthenes works (short proof)
+
+Claim: after running the sieve up to $N$, an index $n$ is unmarked iff $n$ is prime.
+
+Proof idea (one line): every composite $n$ has a smallest prime factor $p \le \sqrt{n}$, so when the algorithm processes $p$ it marks $n$.
+
+More formally:
+- If $n$ is composite then $\exists$ prime $p$ with $p\mid n$ and $p\le\sqrt{n}$. The sieve marks multiples of $p$ starting at $p^2$, and since $p\le\sqrt{n}$ we have $p^2\le n$, so $n$ will be marked by $p$ (or by a smaller prime).
+- If $n$ is prime no smaller prime divides it, so it is never marked.
+
+Thus unmarked numbers are exactly the primes.
+
+Small-step run (2..30) — show remaining unmarked after key steps:
+
+Start: $2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30$
+
+After $p=2$ (mark multiples of 2): $2,3,\,[4],5,[6],7,[8],9,[10],11,[12],13,[14],15,[16],17,[18],19,[20],21,[22],23,[24],25,[26],27,[28],29,[30]$
+
+After $p=3$ (mark multiples of 3): $2,3,5,7,[9],11,[15],13,[21],17,19,[27],23,25,29$
+
+After $p=5$ (mark multiples of 5 starting at $5^2=25$): $2,3,5,7,11,13,17,19,23,[25],29$
+
+Stop when $p^2>N$ (here $7^2=49>30$). Final primes $\le 30$: $2,3,5,7,11,13,17,19,23,29$.
+
+---
+
+### 2. Why $\displaystyle \phi(n)=n\prod_{p\mid n}\left(1-\frac{1}{p}\right)$ (intuition + examples)
+
+Idea: $\phi(n)$ counts integers $1\le k\le n$ that are not divisible by any prime factor of $n$. Each distinct prime factor $p$ removes a fraction $1/p$ of numbers; the remaining fraction multiplies.
+
+Key facts:
+- For a prime power $p^a$: $\phi(p^a)=p^a-p^{a-1}=p^a\left(1-\frac{1}{p}\right)$.
+- $\phi$ is multiplicative on coprime arguments: if $\gcd(x,y)=1$ then $\phi(xy)=\phi(x)\phi(y)$. Combine to get the product formula.
+
+Formula:
+$$
+\phi(n)=n\prod_{p\mid n}\left(1-\frac{1}{p}\right).
+$$
+
+Examples:
+- $n=10=2\cdot5$: $\displaystyle \phi(10)=10\Big(1-\tfrac{1}{2}\Big)\Big(1-\tfrac{1}{5}\Big)=10\cdot\tfrac{1}{2}\cdot\tfrac{4}{5}=4$. Coprime numbers: $\{1,3,7,9\}$.
+- $n=13$ (prime): $\displaystyle \phi(13)=13\Big(1-\tfrac{1}{13}\Big)=12$.
+- $n=36=2^2\cdot3^2$: $\displaystyle \phi(36)=36\Big(1-\tfrac{1}{2}\Big)\Big(1-\tfrac{1}{3}\Big)=36\cdot\tfrac{1}{2}\cdot\tfrac{2}{3}=12$.
+
+---
+
+### 3. Why the Totient Sieve is correct (short invariant + examples)
+
+Algorithm invariant: initialize $\phi[i]=i$. For each prime $p$ and each multiple $j$ of $p$ do
+$$
+\phi[j]\leftarrow \phi[j]-\frac{\phi[j]}{p}.
+$$
+Each distinct prime factor $p$ of $j$ effectively multiplies $\phi[j]$ by $(1-\tfrac{1}{p})$. After processing all distinct primes dividing $j$ we obtain
+$$
+\phi[j]=j\prod_{p\mid j}\left(1-\frac{1}{p}\right),
+$$
+which is Euler's formula.
+
+Small updates (demonstration):
+- $j=10$:
+  - start: $\phi[10]=10$
+  - after $p=2$: $\phi[10]=10-10/2=5$
+  - after $p=5$: $\phi[10]=5-5/5=4$
+- $j=36$:
+  - start: $\phi[36]=36$
+  - after $p=2$: $\phi[36]=36-36/2=18$
+  - after $p=3$: $\phi[36]=18-18/3=12$
+- $j=13$ (prime):
+  - start: $\phi[13]=13$
+  - after $p=13$: $\phi[13]=13-13/13=12$
+
+These updates match the product formula and are what the sieve implements.
+
 ## 🔹 Step 1: Recall – Simple Sieve of Eratosthenes
 
 Sieve of Eratosthenes ek efficient algorithm hai jo 1 se N tak ke saare primes nikalta hai.
