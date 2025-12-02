@@ -6,6 +6,48 @@ tags: [math, modular, number-theory, mod, inverse, exponentiation, crt, fermat, 
 excerpt: Complete guide to modular arithmetic — including modular inverse, exponentiation, Fermat’s theorem, Euler’s theorem, and the Chinese Remainder Theorem for competitive programming.
 ---
 
+## 🔹 Mathematical Proofs (Beginner-friendly)
+
+Short, intuitive proofs and small examples for the key facts used in this guide.
+
+### 1. Correctness of binary modular exponentiation
+Invariant: maintain `result * a^e ≡ A^E (mod m)` where `A^E` is the original power.  
+Each loop:
+- if current low bit of `e` is 1, `result ← result * a` (keeps invariant),
+- then `a ← a*a`, `e ← e>>1` (keeps invariant).
+When `e=0` we have `result ≡ A^E (mod m)`. This gives O(log e) steps.
+
+Example: compute $2^{13}\bmod1000$ via binary method — repeated squaring and selective multiplies produce the same reduced value as direct power.
+
+### 2. Fermat’s Little Theorem (sketch) — $a^{p-1}\equiv1\pmod p$
+For prime $p$ and $a$ not divisible by $p$, the map $x\mapsto ax\pmod p$ permutes $\{1,\dots,p-1\}$.  
+Multiply all values: $a^{p-1}(p-1)!\equiv(p-1)!\pmod p$. Cancel $(p-1)!$ (nonzero mod $p$) to get the result.  
+Corollary: $a^{-1}\equiv a^{p-2}\pmod p$.
+
+Example: $3^{6}\bmod7=1$, so $3^{-1}\equiv3^{5}\bmod7=5$.
+
+### 3. Euler’s theorem (sketch) — $a^{\varphi(n)}\equiv1\pmod n$
+If $\gcd(a,n)=1$, the multiplicative residues modulo $n$ form a group of size $\varphi(n)$. By Lagrange's theorem for finite groups, $a^{\varphi(n)}$ is the identity, i.e. $1$ mod $n$.
+
+Example: $n=10$, $\varphi(10)=4$, and $3^4\bmod10=81\bmod10=1$.
+
+### 4. Extended Euclidean Algorithm correctness (inverse)
+Recurrence finds $x,y$ with $ax+by=\gcd(a,b)$. Base: $b=0$ returns $(1,0)$. Step: reduce to $(b,a\bmod b)$ and back-substitute using $a\bmod b=a-\lfloor a/b\rfloor b$. If $\gcd(a,m)=1$, the returned $x$ satisfies $ax\equiv1\pmod m$ (modular inverse).
+
+Example: inverse of $3$ mod $11$ → extended gcd gives $x=4$ since $3·4+11·(−1)=1$, so $3^{-1}\equiv4$.
+
+### 5. Chinese Remainder Theorem (intuition + correctness)
+For pairwise coprime moduli $m_i$, construct $M=\prod m_i$, $M_i=M/m_i$. Each $M_i$ has inverse $y_i$ mod $m_i$. Then
+$$x=\sum r_i M_i y_i\pmod M$$
+satisfies all congruences because for each $i$, $M_j\equiv0\pmod{m_i}$ when $j\ne i$, and $M_i y_i\equiv1\pmod{m_i}$.
+
+Example: solve
+$x\equiv2\pmod3,\;x\equiv3\pmod4,\;x\equiv2\pmod5$.
+Compute $M=60$, $M_1=20,y_1=2$, $M_2=15,y_2=3$, $M_3=12,y_3=3$. Then
+$x=(2·20·2 + 3·15·3 + 2·12·3)\bmod60 = 47\bmod60$.
+
+---
+
 # ⚙️ Modular Arithmetic Complete Guide
 
 Ye article tumhe **modular arithmetic ka complete roadmap** deta hai —  

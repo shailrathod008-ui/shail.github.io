@@ -5,6 +5,65 @@ categories: [Number Theory]
 tags: [math, modular, number-theory, mod, inverse, exponentiation, crt, fermat, euler]
 excerpt: Modular Arithmetic + Prime Code
 ---
+## 🔹 Mathematical Proofs (Beginner-friendly)
+
+Short, intuitive proofs for the algorithms in the post. Uses simple invariants and tiny examples.
+
+### 1. Binary (fast) modular exponentiation — why it works
+
+Invariant used by the loop: at any point, let res be the accumulated result and a be the current base, e the remaining exponent. The invariant is
+$$
+\text{res}\cdot a^{e} \equiv A^{E}\pmod m
+$$
+where $A^{E}$ is the original power being computed. Each loop step either multiplies res by a (when the low bit of e is 1) or squares a and halves e. These operations preserve the invariant, and when $e=0$ we get $\text{res}\equiv A^{E}\pmod m$, which is the answer.
+
+Example:
+- Compute $2^{13}\bmod 1000$ with binary method. Steps produce the same final result $819$ as plain exponentiation reduced mod 1000.
+
+### 2. Fermat’s Little Theorem — justification and inverse using it
+
+Statement: if $p$ is prime and $\gcd(a,p)=1$ then
+$$
+a^{p-1}\equiv 1\pmod p.
+$$
+Sketch proof: multiply the residues $1,2,\dots,p-1$ by $a$ modulo $p$. The set $\{a\cdot1,\dots,a\cdot(p-1)\}$ is a permutation of $\{1,\dots,p-1\}$. Multiplying all terms gives
+$$
+a^{p-1}(p-1)!\equiv (p-1)!\pmod p.
+$$
+Since $(p-1)!\not\equiv0\pmod p$, we can cancel it to get $a^{p-1}\equiv1\pmod p$.
+
+Using this, when modulus $m$ is prime, the inverse of $a$ is
+$$
+a^{-1}\equiv a^{m-2}\pmod m.
+$$
+
+Example:
+- $p=7$, $a=3$: $3^{6}\bmod7=1$, and inverse $3^{-1}\equiv3^{5}\bmod7=5$ (indeed $3\cdot5\equiv1\pmod7$).
+
+### 3. Extended Euclidean Algorithm — correctness for inverse
+
+The recursive Extended Euclid returns integers $x,y$ with
+$$
+ax+by=\gcd(a,b).
+$$
+Proof idea: base case when $b=0$ returns $(1,0)$ since $a\cdot1+b\cdot0=a$. For $b\ne0$ we recurse on $(b,a\bmod b)$ which gives coefficients for $\gcd(b,a\bmod b)$. Expressing $a\bmod b=a-\lfloor a/b\rfloor b$ and substituting yields coefficients for $\gcd(a,b)$. This recursion constructs valid $x,y$ by linear combination.
+
+If $\gcd(a,m)=1$, the $x$ produced satisfies $ax\equiv1\pmod m$ and is the modular inverse.
+
+Examples:
+- Inverse of $3$ mod $11$: extended gcd yields $x=4$ since $3\cdot4+11\cdot(-1)=1$, so $3^{-1}\equiv4\pmod{11}$.
+- If $\gcd(a,m)\ne1$ (e.g., $a=3,m=9$) the algorithm returns gcd$>1$ and no inverse exists.
+
+### 4. Sieve of Eratosthenes — short proof
+
+Claim: after running sieve up to $N$, unmarked numbers are exactly primes $\le N$.
+
+Reason: every composite $n$ has a smallest prime divisor $p\le\sqrt n$. When sieve processes $p$ it marks all multiples of $p$ starting at $p^2\le n$, so $n$ is marked. Primes are never marked because no smaller prime divides them. Thus unmarked numbers are primes.
+
+Example:
+- Sieve up to $50$ finds primes: $2,3,5,7,11,13,17,19,23,29,31,37,41,43,47$.
+
+---
 
 ```cpp
 // ===============================
