@@ -20,12 +20,11 @@ description: "wi-fi linux flow in  Depth"
 
 1. [Overview & High-Level Architecture](#1-overview--high-level-architecture)
 2. [Core Components](#2-core-components)
-3. [D-Bus Interface Architecture](#3-dbus-interface-architecture)
-4. [State Machines](#4-state-machines)
-5. [Control and Data Flows](#5-control-and-data-flows)
-6. [Data Structures](#6-data-structures)
-7. [Algorithms and Design Decisions](#7-algorithms-and-design-decisions)
-8. [Architecture Diagrams](#8-architecture-diagrams)
+3. [State Machines](#4-state-machines)
+4. [Control and Data Flows](#5-control-and-data-flows)
+5. [Data Structures](#6-data-structures)
+6. [Algorithms and Design Decisions](#7-algorithms-and-design-decisions)
+7. [Architecture Diagrams](#8-architecture-diagrams)
 
 ---
 
