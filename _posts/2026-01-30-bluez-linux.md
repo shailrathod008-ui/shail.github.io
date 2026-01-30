@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "wi-fi linux flow"
+title: "BlueZ Architecture and Design Documentation"
 date: 2026-01-30 9:00:00 +0530
 categories: [connman]
 tags: [connman,wlan]
-description: "wi-fi linux flow in  Depth"
+description: "BlueZ Architecture and Design Documentation in  Depth"
 
 ---
 
