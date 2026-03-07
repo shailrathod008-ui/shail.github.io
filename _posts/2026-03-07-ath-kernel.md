@@ -232,6 +232,7 @@ struct ath_regulatory {
 **Source tree:** `ath9k/`
 
 **Key files:**
+
 | File | Purpose |
 |------|---------|
 | `init.c` | PCI/AHB device probe, `ieee80211_alloc_hw`, IRQ setup |
@@ -275,6 +276,7 @@ struct ath_regulatory {
 **Source tree:** `ath10k/`
 
 **Key files:**
+
 | File | Purpose |
 |------|---------|
 | `core.c/h` | `struct ath10k` master, device lifecycle, thread model |
